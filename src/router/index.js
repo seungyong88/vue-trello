@@ -7,9 +7,14 @@ const routes = [
     component: () => import('@/views/Home') // 동적 import
   },
   {
-    path: '/Login',
+    path: '/login',
     name: 'Login',
     component: () => import('@/views/Login') // 동적 import
+  },
+  {
+    path: '/board/:bid',
+    name: 'Board',
+    component: () => import('@/views/Board') // 동적 import
   },
   { 
     path: '/:pathMatch(.*)*', 
