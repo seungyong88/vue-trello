@@ -14,7 +14,10 @@ const routes = [
   {
     path: '/board/:bid',
     name: 'Board',
-    component: () => import('@/views/Board') // 동적 import
+    component: () => import('@/views/Board'), // 동적 import,
+    children: [
+      { path: 'card/:cid', component: () => import('@/components/Card') },
+    ]
   },
   { 
     path: '/:pathMatch(.*)*', 
