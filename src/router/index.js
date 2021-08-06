@@ -30,7 +30,3 @@ export const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-export const auth = {
-  login(email, )
-}
