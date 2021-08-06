@@ -18,6 +18,9 @@ export default {
 </script>
 
 <style>
+body {
+  text-align: center;
+},
 input[type=text] {
   width: 96%;
   border-radius: 4px;
