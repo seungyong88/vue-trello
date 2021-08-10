@@ -11,7 +11,9 @@
     <router-view />
   </div>
 </template>
+
 <script>
+import { board } from '../api';
 
 export default {
   data(){
@@ -26,14 +28,10 @@ export default {
   },
   methods: {
     fetchData() {
-      setTimeout(() => {
-        this.loading = false;
-      }, 1000)
+      board.fetch().then(res => { 
+        console.log(res);
+      }) 
     }
   }
 }
 </script>
-
-<style>
-
-</style>

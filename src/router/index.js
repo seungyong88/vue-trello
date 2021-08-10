@@ -1,10 +1,19 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
+const requireAuth = (to, from, next) => {
+  const isAuth = localStorage.getItem('token')
+  const loginPath = `/login?rPath=${encodeURIComponent(to.path)}`;
+
+  // 로그인 정보가 있으면 다음으로 없으면 로그인 경로로
+  isAuth ? next() : next(loginPath);
+}
+
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home') // 동적 import
+    component: () => import('@/views/Home'), // 동적 import
+    beforeEnter: requireAuth
   },
   {
     path: '/login',
@@ -14,9 +23,14 @@ const routes = [
   {
     path: '/board/:bid',
     name: 'Board',
-    component: () => import('@/views/Board'), // 동적 import,
+    component: () => import('@/views/Board'), // 동적 import
+    beforeEnter: requireAuth,
     children: [
-      { path: 'card/:cid', component: () => import('@/components/Card') },
+      { 
+        path: 'card/:cid', 
+        component: () => import('@/components/Card'),
+        beforeEnter: requireAuth
+      },
     ]
   },
   { 

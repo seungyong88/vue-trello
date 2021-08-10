@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from '../router';
 
-const DOMAIN = 'http//localhost:3000';
+const DOMAIN = 'http://localhost:3000';
 const UNAUTHORIZED = 401;
 
 const onUnauthrorized = () => {
@@ -24,8 +24,18 @@ const request = (method, url, data) => {
 } 
 
 
+export const setAuthInHeader = token => {
+  axios.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : null;
+}
+
 export const board = {
   fetch() {
-    return request('get', '/board');
+    return request('get', '/boards');
+  }
+}
+
+export const auth = {
+  login(email, password) {
+    return request('post', '/login', {email, password});
   }
 }
