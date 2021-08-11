@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link>
     </div>
     <div class="header-auth">
+      {{isAuth}}
       <a href="" v-if="isAuth" @click.prevent="logout">Logout</a>
       <router-link to="/login" v-else>Login</router-link>
     </div>
@@ -22,6 +23,8 @@ export default {
     logout() {
       delete localStorage.token;
       setAuthInHeader(null);
+      console.log(this.isAuth);
+      console.log(localStorage.getItem('token'));
       this.$router.push('/login');
     }
   }

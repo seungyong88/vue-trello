@@ -45,6 +45,8 @@ export default {
       .then(data => {
         setAuthInHeader(data.accessToken);
         localStorage.setItem('token', data.accessToken);
+        console.log(localStorage.getItem('token'));
+        this.$router.push('/login');
       })
       .catch(err => {
         this.error = err;
