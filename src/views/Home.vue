@@ -43,7 +43,7 @@ export default {
         .then(data => {
           this.boards = data.list
         })
-        .finally(_=> {
+        .finally(()=> {
           this.loading = false
         })
     },
