@@ -4,8 +4,7 @@
     <form @submit.prevent="onSubmit">
       <div>
         <label for="email">Email</label>
-        <input class="form-control" type="text" name="email" 
-          v-model="email" autofocus placeholder="e.g., test@test.com" />
+        <input class="form-control" type="text" name="email" :value="'test@test.com'" />
       </div>
       <div>
         <label for="password">Passwrod</label>
@@ -21,6 +20,8 @@
 
 <script>
 import { auth, setAuthInHeader } from '../api';
+
+import { board } from '../api'
 
 export default {
   data() {
@@ -46,7 +47,10 @@ export default {
         setAuthInHeader(data.accessToken);
         localStorage.setItem('token', data.accessToken);
         console.log(localStorage.getItem('token'));
-        this.$router.push('/login');
+        board.fetch().then(res => {
+          console.log(res)
+        }).catch(() => console.log('d'))
+        // this.$router.push('/login');
       })
       .catch(err => {
         this.error = err;
